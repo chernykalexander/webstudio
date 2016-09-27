@@ -1,1 +1,12 @@
-Test
+Здравствуйте.
+
+1. Установите тему twentytwelve на Вордпресс.
+2. Скопируйте три файла: testajax.php, content.php, header.php в папку этой темы.
+3. Файлы должны распологаться по адресу:
+/wp-content/themes/twentytwelve/testajax.php
+/wp-content/themes/twentytwelve/content.php
+/wp-content/themes/twentytwelve/header.php
+
+Я создал две кнопки.
+Первая кнопка стандартная. Выводит адреса и время. Меняет цвет и становится недоступной.
+Вторая кнопка использует Ajax. Она асинхронно вызывает скрипт testajax.php Выводит время и адрес функцией alert.

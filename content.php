@@ -45,13 +45,20 @@
 			<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'twentytwelve' ), 'after' => '</div>' ) ); ?>
 
 
+
 <p>
-Здесь будет тестовая кнопка <br>
+<input type='button' value='TEST AJAX' onclick='AJAXButton()'>
+Кнопка с использованием Ajax
 </p>
 
 
 <p>
-<button id="mybutton" class="b1" onclick="isMyFunction()">Нажать</button>
+<br>
+</p>
+
+<p>
+<button id="mybutton" class="StyleColorRed" onclick="isMyFunction();">Нажать</button>
+Обычная кнопка без Ajax
 </p>
 
 

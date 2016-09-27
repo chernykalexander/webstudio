@@ -26,14 +26,15 @@
 
 
 
-
+ <!--Стиль: красная кнопка -->
  <style>
-   .b1 {
-    background: #d40a0a; /* Синий цвет фона */ 
+   .StyleColorRed {
+    background: #d40a0a; /* Красный цвет фона */ 
     color: white; /* Белые буквы */ 
     font-size: 20pt; /* Размер шрифта в пунктах */
    }
   </style>
+
 
 
  <script>
@@ -67,14 +68,57 @@
     /* Выводим время и адрес сервера */
     document.getElementById("MyTimeServer").innerHTML=DateTimeServer;
     document.getElementById("MyAdressServer").innerHTML=jsVarIPServer;
+
+    /* Запретим пользователю нажимать на эту кнопку и покрасим ее в зеленый цвет */
+    document.getElementById("mybutton").innerHTML="Кнопка уже нажата";
+    document.getElementById("mybutton").style.backgroundColor = "green";
+    document.getElementById("mybutton").disabled = 'true';   
    }
   </script>
 
 
 
 
+<!--Кроссбраузерное создание объекта запроса -->
+<script Language="JavaScript">
+
+ function getXmlHttp(){
+  var xmlhttp;
+  try {
+    xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+  } catch (e) {
+    try {
+      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    } catch (E) {
+      xmlhttp = false;
+    }
+  }
+  if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
+    xmlhttp = new XMLHttpRequest();
+  }
+  return xmlhttp;
+}
 
 
+<!--Асинхронный вызов -->
+function AJAXButton() {
+
+var CurrentDateTime = new Date();
+var CurrentTime = "Время на клиенте: " + CurrentDateTime.getHours()+':'+ CurrentDateTime.getMinutes() + ':' + CurrentDateTime.getSeconds()+ '  ';
+var xmlhttp = getXmlHttp()
+
+xmlhttp.open('GET', '/wp-content/themes/twentytwelve/testajax.php', true);
+xmlhttp.onreadystatechange = function() {
+  if (xmlhttp.readyState == 4) {
+     if(xmlhttp.status == 200) {
+       alert(CurrentTime + xmlhttp.responseText); 
+         }
+  }
+};
+xmlhttp.send(null);
+}
+
+</script>
 
 
 
@@ -93,36 +137,6 @@
 <body <?php body_class(); ?>>
 
 
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function (d, w, c) {
-        (w[c] = w[c] || []).push(function() {
-            try {
-                w.yaCounter39827135 = new Ya.Metrika({
-                    id:39827135,
-                    clickmap:true,
-                    trackLinks:true,
-                    accurateTrackBounce:true,
-                    webvisor:true,
-                    trackHash:true
-                });
-            } catch(e) { }
-        });
-
-        var n = d.getElementsByTagName("script")[0],
-            s = d.createElement("script"),
-            f = function () { n.parentNode.insertBefore(s, n); };
-        s.type = "text/javascript";
-        s.async = true;
-        s.src = "https://mc.yandex.ru/metrika/watch.js";
-
-        if (w.opera == "[object Opera]") {
-            d.addEventListener("DOMContentLoaded", f, false);
-        } else { f(); }
-    })(document, window, "yandex_metrika_callbacks");
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/39827135" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
 
 
 <div id="page" class="hfeed site">
